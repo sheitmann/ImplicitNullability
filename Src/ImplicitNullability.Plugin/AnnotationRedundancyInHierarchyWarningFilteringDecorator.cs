@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.DocumentModel;
 using JetBrains.ReSharper.Daemon.CSharp.Errors;
 using JetBrains.ReSharper.Feature.Services.Daemon;
 
@@ -13,11 +14,11 @@ namespace ImplicitNullability.Plugin
             _decorated = decorated;
         }
 
-        public void ConsumeHighlighting(HighlightingInfo highlightingInfo)
+        public void ConsumeHighlighting(HighlightingInfo highlightingInfo, DocumentRange[] secondaryDocumentRanges = null, string secondaryAttributeId = null)
         {
             if (!(highlightingInfo.Highlighting is AnnotationRedundancyInHierarchyWarning))
             {
-                _decorated.ConsumeHighlighting(highlightingInfo);
+                _decorated.ConsumeHighlighting(highlightingInfo, secondaryDocumentRanges, secondaryAttributeId);
             }
         }
 
