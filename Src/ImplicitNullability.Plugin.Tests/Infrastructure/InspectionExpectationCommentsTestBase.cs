@@ -160,7 +160,7 @@ namespace ImplicitNullability.Plugin.Tests.Infrastructure
 
                 collectInspectionResults.RunLocalInspections(
                     new Stack<IPsiSourceFile>(sourceFiles),
-                    issuePointers => issues.AddRange(issuePointers));
+                    (file, issuePointers) => issues.AddRange(issuePointers));
             }
 
             return issues;

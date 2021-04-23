@@ -290,7 +290,7 @@ namespace ImplicitNullability.Plugin
                 var defaultValue = parameter.GetDefaultValue();
                 var optionalParameterText = "OptionalParameter IsConstant: " + defaultValue.IsConstant +
                                             ", ConstantValue.Value: " + (defaultValue.ConstantValue.Value ?? "NULL") +
-                                            ", IsDefaultType: " + defaultValue.IsDefaultType +
+                                            ", IsDefaultValue: " + defaultValue.IsDefaultValue +
                                             ", DefaultTypeValue.IsValueType(): " + defaultValue.DefaultTypeValue.IsValueType();
 
                 Logger.Verbose(optionalParameterText);
@@ -303,7 +303,7 @@ namespace ImplicitNullability.Plugin
         private static bool IsNullDefaultValue(DefaultValue defaultValue)
         {
             // Note that for "param = null" and "param = default(string)", the ConstantValue cannot be trusted; we therefore must check IsDefaultType:
-            var isNullDefaultExpression = defaultValue.IsDefaultType && !defaultValue.DefaultTypeValue.IsValueType();
+            var isNullDefaultExpression = defaultValue.IsDefaultValue && !defaultValue.DefaultTypeValue.IsValueType();
 
             // For "param = StringConstantMember" this check is necessary:
             var isNullConstantExpression = defaultValue.IsConstant && defaultValue.ConstantValue.Value == null;
